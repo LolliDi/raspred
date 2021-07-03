@@ -73,7 +73,7 @@ namespace raspred
             Console.WriteLine("Записываем ответ в файл!");
             try
             {
-                using (StreamWriter sw = new StreamWriter(link+"output.csv",false,System.Text.Encoding.Default))
+                using (StreamWriter sw = new StreamWriter(link+"output.txt",false,System.Text.Encoding.Default))
                 {
                     sw.WriteLine(s);
                 }
@@ -89,7 +89,7 @@ namespace raspred
                 Console.WriteLine("Запись завершена! Открываем файл с ответом...");
                 Process otkr = new Process(); //открываем файл с ответом
                 otkr.StartInfo.FileName = "notepad.exe";
-                otkr.StartInfo.Arguments = link + "output.csv";
+                otkr.StartInfo.Arguments = link + "output.txt";
                 otkr.Start();
             }
             catch
