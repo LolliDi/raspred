@@ -10,8 +10,7 @@ namespace raspred
         {
             string link = @"C:\Users\290ro\Desktop\ekz\raspred\";
             massiv a = new massiv(read(link));
-            int F = reshenie(a);
-            string otvet = "Ответ: F = " + F +" у.е.д.";
+            string otvet = reshenie(a);
             write(link, otvet);
 
         }
@@ -34,10 +33,11 @@ namespace raspred
             }
             return stroka_dannih;
         }
-        static int reshenie (massiv a) //решение
+        static string reshenie (massiv a) //решение
         {
             Console.WriteLine("Решение транспортной задачи методом Северо-Западного угла");
             int F = 0;
+            string otvet = "";
             for(int i = 1; i<a.r1;i++)
             {
                 for(int j = 1; j<a.r2;j++) //перебор массива
@@ -48,23 +48,24 @@ namespace raspred
                         {
                             a.mas[0, j] -= a.mas[i, 0];
                             F += a.mas[i, 0] * a.mas[i, j];
-                            Debug.WriteLine($"Из {i} в {j} едет {a.mas[i, 0]} по {a.mas[i, j]}");
+                            otvet += $"От {i}-го поставщика к {j}-му потребителю едет {a.mas[i, 0]} ед. товара по цене {a.mas[i, j]}у.д.е. за шт.\n";
                             a.mas[i, 0] = 0;
                         }
                         else //наоборот 
                         {
                             a.mas[i, 0] -= a.mas[0, j];
                             F += a.mas[0, j] * a.mas[i, j];
-                            Debug.WriteLine($"Из {i} в {j} едет {a.mas[0, j]} по {a.mas[i, j]}");
+                            otvet+=$"От {i}-го поставщика к {j}-му потребителю едет {a.mas[0, j]} ед. товара по цене {a.mas[i, j]}у.д.е. за шт.\n";
                             a.mas[0, j] = 0;
                         }
                     }
                 }
             }
             a.pokazhi();
-            Debug.WriteLine("F = " + F);
+            otvet += "Ответ: F = " + F + "у.д.е.";
+            Debug.WriteLine(otvet);
             Console.WriteLine("Решение завершено!");
-            return F;
+            return otvet;
         }
         static void  write(string link, string s) //запись ответа в файл
         {
