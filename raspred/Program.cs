@@ -8,15 +8,14 @@ namespace raspred
     {
         static void Main(string[] args)
         {
-            Program b = new Program();
-            string link = Environment.CurrentDirectory;
-            link = link.Replace(@"raspred\bin\Debug\netcoreapp3.1", "");
+            string link = Environment.CurrentDirectory; //ищем путь к exe
+            link = link.Replace(@"raspred\bin\Debug\netcoreapp3.1", ""); //убираем ненужное
             massiv a = new massiv(read(link));
-            string otvet = b.reshenie(a);
+            string otvet = reshenie(a);
             write(link, otvet);
 
         }
-        static string read(string link)
+        static string read(string link) //метод чтения
         {
             Console.WriteLine("Считываем данные...");
             string stroka_dannih="";
@@ -35,7 +34,7 @@ namespace raspred
             }
             return stroka_dannih;
         }
-        public string reshenie (massiv a) //решение
+        public static string reshenie (massiv a) //решение
         {
             Console.WriteLine("Решение транспортной задачи методом Северо-Западного угла");
             int F = 0;
@@ -85,10 +84,10 @@ namespace raspred
                 Console.WriteLine("Не удалось записать данные!! Проверьте ссылку!");
                 Environment.Exit(1);
             }
-            try
+            try //открываем файл
             {
                 Console.WriteLine("Запись завершена! Открываем файл с ответом...");
-                Process otkr = new Process(); //открываем файл с ответом
+                Process otkr = new Process();
                 otkr.StartInfo.FileName = "notepad.exe";
                 otkr.StartInfo.Arguments = link + "output.txt";
                 otkr.Start();

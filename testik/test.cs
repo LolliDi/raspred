@@ -18,8 +18,7 @@ namespace testik
         public void test_otvet()
         {
             massiv a = new massiv("3 4 45 15 22 20 25 9 5 3 10 55 6 3 8 2 22 3 8 4 7");
-            Program b = new Program();
-            string actual_otv = b.reshenie(a);
+            string actual_otv = Program.reshenie(a);
             string nuzhn_otv = "От 1-го поставщика к 1-му потребителю едет 25 ед. товара по цене 9у.д.е. за шт."+
     "\nОт 2-го поставщика к 1-му потребителю едет 20 ед. товара по цене 6у.д.е. за шт." +
     "\nОт 2-го поставщика к 2-му потребителю едет 15 ед. товара по цене 3у.д.е. за шт." +
