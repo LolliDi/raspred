@@ -8,13 +8,16 @@ namespace raspred
     {
         static void Main(string[] args)
         {
-            massiv a = new massiv(read());
+            string link = @"C:\Users\290ro\Desktop\ekz\raspred\";
+            massiv a = new massiv(read(link));
+            int F = reshenie(a);
+            string otvet = "Ответ: F = " + F +" у.е.д.";
+            write(link, otvet);
 
         }
-        static string read()
+        static string read(string link)
         {
             Console.WriteLine("Считываем данные...");
-            string link = @"C:\Users\290ro\Desktop\ekz\raspred\";
             string stroka_dannih="";
             try
             {
@@ -31,13 +34,13 @@ namespace raspred
             }
             return stroka_dannih;
         }
-        static int reshenie (massiv a)
+        static int reshenie (massiv a) //решение
         {
             Console.WriteLine("Решение транспортной задачи методом Северо-Западного угла");
             int F = 0;
-            for(int i = 0; i<a.r1;i++)
+            for(int i = 1; i<a.r1;i++)
             {
-                for(int j = 0; j<a.r2;j++)
+                for(int j = 1; j<a.r2;j++) //перебор массива
                 {
                     if(a.mas[0,j]!=0&&a.mas[i,0]!=0)
                     {
@@ -60,7 +63,37 @@ namespace raspred
             }
             a.pokazhi();
             Debug.WriteLine("F = " + F);
+            Console.WriteLine("Решение завершено!");
             return F;
+        }
+        static void  write(string link, string s) //запись ответа в файл
+        {
+            Console.WriteLine("Записываем ответ в файл!");
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(link+"output.csv",false,System.Text.Encoding.Default))
+                {
+                    sw.WriteLine(s);
+                }
+                
+            }
+            catch
+            {
+                Console.WriteLine("Не удалось записать данные!! Проверьте ссылку!");
+                Environment.Exit(1);
+            }
+            try
+            {
+                Console.WriteLine("Запись завершена! Открываем файл с ответом...");
+                Process otkr = new Process(); //открываем файл с ответом
+                otkr.StartInfo.FileName = "notepad.exe";
+                otkr.StartInfo.Arguments = link + "output.csv";
+                otkr.Start();
+            }
+            catch
+            {
+                Console.WriteLine("Не удалось открыть файл!");
+            }
         }
     }
 }
