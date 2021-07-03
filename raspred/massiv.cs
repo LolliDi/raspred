@@ -21,7 +21,7 @@ namespace raspred
                 {
                     for (int j = 0; j < r2; j++) //записываем массив строк в массив чисел
                     {
-                        if (i == 0 && j == 0)
+                        if (i == 0 && j == 0) //перекретье между спросом и предложением
                             mas[i, j] = 0;
                         else
                         {
@@ -30,20 +30,25 @@ namespace raspred
                         }
                     }
                 }
-                Debug.WriteLine("Запись массива завершена!");
-                for (int i = 0; i < r1; i++) //выводим массив в дебаг
-                {
-                    for (int j = 0; j < r2; j++)
-                    {
-                        Debug.Write($"{mas[i, j]}\t");
-                    }
-                    Debug.WriteLine("");
-                }
+                Console.WriteLine("Запись массива завершена!");
+                pokazhi();
             }
             catch
             {
-                Console.WriteLine("Неверный форматр введенных данных!");
+                Console.WriteLine("Неверный формат введенных данных!");
                 Environment.Exit(1);
+            }
+        }
+        public void pokazhi() //выводим массив в дебаг
+        {
+            Debug.WriteLine("Массив:");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < r2; j++)
+                {
+                    Debug.Write($"{mas[i, j]}\t");
+                }
+                Debug.WriteLine("");
             }
         }
     }
