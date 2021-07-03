@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 
 namespace raspred
 {
@@ -18,7 +18,7 @@ namespace raspred
         static string read(string link) //метод чтения
         {
             Console.WriteLine("Считываем данные...");
-            string stroka_dannih="";
+            string stroka_dannih = "";
             try
             {
                 using (StreamReader sr = new StreamReader(link + "input.csv"))
@@ -34,16 +34,16 @@ namespace raspred
             }
             return stroka_dannih;
         }
-        public static string reshenie (massiv a) //решение
+        public static string reshenie(massiv a) //решение
         {
             Console.WriteLine("Решение транспортной задачи методом Северо-Западного угла");
             int F = 0;
             string otvet = "";
-            for(int i = 1; i<a.r1;i++)
+            for (int i = 1; i < a.r1; i++)
             {
-                for(int j = 1; j<a.r2;j++) //перебор массива
+                for (int j = 1; j < a.r2; j++) //перебор массива
                 {
-                    if(a.mas[0,j]!=0&&a.mas[i,0]!=0)
+                    if (a.mas[0, j] != 0 && a.mas[i, 0] != 0)
                     {
                         if (a.mas[0, j] >= a.mas[i, 0]) //если спрос больше предложения, то вычитаем из спроса предложение и записываем поставку
                         {
@@ -56,7 +56,7 @@ namespace raspred
                         {
                             a.mas[i, 0] -= a.mas[0, j];
                             F += a.mas[0, j] * a.mas[i, j];
-                            otvet+=$"От {i}-го поставщика к {j}-му потребителю едет {a.mas[0, j]} ед. товара по цене {a.mas[i, j]}у.д.е. за шт.\n";
+                            otvet += $"От {i}-го поставщика к {j}-му потребителю едет {a.mas[0, j]} ед. товара по цене {a.mas[i, j]}у.д.е. за шт.\n";
                             a.mas[0, j] = 0;
                         }
                     }
@@ -68,16 +68,16 @@ namespace raspred
             Console.WriteLine("Решение завершено!");
             return otvet;
         }
-        static void  write(string link, string s) //запись ответа в файл
+        static void write(string link, string s) //запись ответа в файл
         {
             Console.WriteLine("Записываем ответ в файл!");
             try
             {
-                using (StreamWriter sw = new StreamWriter(link+"output.txt",false,System.Text.Encoding.Default))
+                using (StreamWriter sw = new StreamWriter(link + "output.txt", false, System.Text.Encoding.Default))
                 {
                     sw.WriteLine(s);
                 }
-                
+
             }
             catch
             {
