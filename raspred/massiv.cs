@@ -11,7 +11,8 @@ namespace raspred
         {
             try
             {
-                Debug.WriteLine("Начинаем запись в массив");
+                Trace.WriteLine("Начинаем запись в массив");
+
                 string[] chisla = s.Split(" "); //разбиваем строку по пробелам
                 r1 = Convert.ToInt32(chisla[0]) + 1;
                 r2 = Convert.ToInt32(chisla[1]) + 1;
@@ -53,26 +54,26 @@ namespace raspred
             }
             if (sum1 != sum2) //если спрос не равен предложению - завершаем программу
             {
-                Debug.WriteLine("Спрос клиентов не равен предложению!");
+                Trace.WriteLine("Спрос клиентов не равен предложению!");
                 Console.WriteLine("Программа не может продолжить работу, т.к. не выполнено условие равенства спроса предложению!");
                 Environment.Exit(1);
             }
             else
             {
-                Debug.WriteLine("Равенство подтвердилось");
+                Trace.WriteLine("Равенство подтвердилось");
             }
         }
         public void pokazhi() //выводим массив в дебаг консоль
         {
             
-            Debug.WriteLine("Массив:");
+            Trace.WriteLine("Массив:");
             for (int i = 0; i < r1; i++)
             {
                 for (int j = 0; j < r2; j++)
                 {
-                    Debug.Write($"{mas[i, j]}\t");
+                    Trace.Write($"{mas[i, j]}\t");
                 }
-                Debug.WriteLine("");
+                Trace.WriteLine("");
             }
         }
     }

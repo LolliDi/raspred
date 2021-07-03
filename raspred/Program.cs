@@ -8,7 +8,8 @@ namespace raspred
     {
         static void Main(string[] args)
         {
-            string link = @"C:\Users\290ro\Desktop\ekz\raspred\";
+            string link = Environment.CurrentDirectory;
+            link = link.Replace(@"raspred\bin\Debug\netcoreapp3.1", "");
             massiv a = new massiv(read(link));
             string otvet = reshenie(a);
             write(link, otvet);
@@ -24,7 +25,7 @@ namespace raspred
                 {
                     stroka_dannih = sr.ReadToEnd();
                 }
-                Debug.WriteLine("Считал строку: " + stroka_dannih);
+                Trace.WriteLine("Считал строку: " + stroka_dannih);
             }
             catch
             {
@@ -63,7 +64,7 @@ namespace raspred
             }
             a.pokazhi();
             otvet += "Ответ: F = " + F + "у.д.е.";
-            Debug.WriteLine(otvet);
+            Trace.WriteLine(otvet);
             Console.WriteLine("Решение завершено!");
             return otvet;
         }
