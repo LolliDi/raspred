@@ -4,14 +4,15 @@ using System.Diagnostics;
 
 namespace raspred
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            Program b = new Program();
             string link = Environment.CurrentDirectory;
             link = link.Replace(@"raspred\bin\Debug\netcoreapp3.1", "");
             massiv a = new massiv(read(link));
-            string otvet = reshenie(a);
+            string otvet = b.reshenie(a);
             write(link, otvet);
 
         }
@@ -34,7 +35,7 @@ namespace raspred
             }
             return stroka_dannih;
         }
-        static string reshenie (massiv a) //решение
+        public string reshenie (massiv a) //решение
         {
             Console.WriteLine("Решение транспортной задачи методом Северо-Западного угла");
             int F = 0;
