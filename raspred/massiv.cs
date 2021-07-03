@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace raspred
 {
-    class massiv
+    public class massiv
     {
         public int[,] mas; //массив с данными
         public int r1, r2; //размерности
