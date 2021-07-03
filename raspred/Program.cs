@@ -11,8 +11,7 @@ namespace raspred
             string link = Environment.CurrentDirectory; //ищем путь к exe
             link = link.Replace(@"raspred\bin\Debug\netcoreapp3.1", ""); //убираем ненужное
             massiv a = new massiv(read(link));
-            string otvet = reshenie(a);
-            write(link, otvet);
+            write(link, reshenie(a));
 
         }
         static string read(string link) //метод чтения
