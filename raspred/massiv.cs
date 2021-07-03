@@ -64,6 +64,7 @@ namespace raspred
         }
         public void pokazhi() //выводим массив в дебаг консоль
         {
+            
             Debug.WriteLine("Массив:");
             for (int i = 0; i < r1; i++)
             {
